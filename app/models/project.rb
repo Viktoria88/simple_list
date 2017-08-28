@@ -1,6 +1,5 @@
 class Project < ApplicationRecord
-  belongs_to :users, :optional => true
-  has_many :tasks, dependent: :destroy
-  accepts_nested_attributes_for :tasks
 
+  has_many :tasks, inverse_of: :project
+  accepts_nested_attributes_for :tasks, reject_if: :new_record?, allow_destroy: true
 end

@@ -1,10 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<h2 class="project_title"><%= @project.title %></h2>
+<p>
+  <strong>Title:</strong>
+  <%= @project.title %>
+</p>
 
-<div class="links">
-  <%= link_to 'Edit', edit_project_path(@project) %> |
-  <%= link_to 'Delete', project_path(@project), method: :delete, data: { confirm: "Are you sure?" } %> |
-  <%= link_to 'Back', projects_path %>
-</div>
-
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>

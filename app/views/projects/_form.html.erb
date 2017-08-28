@@ -13,16 +13,12 @@
 
   <div class="field">
     <%= form.label :title %>
-    <%= form.text_field :title, id: :project_title %>
+    <%= form.text_field :title, id: :project_title %><br />
+    <%= link_to_add_fields "Add Task", form, :tasks %>
   </div>
 
     <%= form.fields_for :tasks do |builder| %>
-        <fieldset>
-          <%= builder.label :title, "Task " %><br/>
-          <%= builder.text_area :title %><br/>
-          <%= builder.check_box :_destroy %>
-          <%= builder.label :_destroy, "Remove Task" %>
-        </fieldset>
+        <%= render 'task_fields', f: builder %>
     <% end %>
 
   <div class="actions">

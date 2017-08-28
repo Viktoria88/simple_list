@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
+  before_action :authenticate_user!, exept: [:index, :show]
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /projects
   # GET /projects.json
@@ -16,6 +16,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
+    @project.tasks.build
   end
 
   # GET /projects/1/edit
@@ -28,7 +29,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
 
     respond_to do |format|
-      if @project.save!
+      if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
@@ -70,6 +71,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:title)
+      params.require(:project).permit(:title, tasks_attributes: [:id, :title, :done, :deadline, :_destroy])
     end
 end
