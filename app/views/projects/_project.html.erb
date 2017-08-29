@@ -1,0 +1,23 @@
+<table class="table table-bordered table-striped" id="sortable">
+  <tbody>
+  <% @projects.each do |p| %>
+      <tr data-item-id=<%= p.id %> class="item">
+        <td>
+          <%= p.title %>
+
+    <%= link_to edit_project_path(p), remote: true do %>
+      <button class="btn btn-primary btn-xs">Edit</button>
+    <% end %>
+
+
+            <%= link_to p, remote: true, method: :delete,
+                        data: { confirm: 'Are you sure?' } do %>
+      <button class="btn btn-danger btn-xs">Delete</button>
+    <% end %>
+        </td>
+
+      </tr>
+
+      </tbody>
+  <% end %>
+  </table>

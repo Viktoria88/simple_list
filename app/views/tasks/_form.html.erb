@@ -1,4 +1,6 @@
-<%= form_for (:todo_task) do |f| %>
+<%= form_for @task, remote: true do |f| %>
     <%= f.text_field :content, placeholder: "Start typing here to create task..." %>
+    <%= f.check_box :done %>
+    <%= f.date :deadline %>
     <%= f.submit "Add Task"%>
 <% end %>

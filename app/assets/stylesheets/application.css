@@ -11,5 +11,11 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
+  *= require layout
  */
+
+$btn-default-bg: #9B111E;
+$btn-default-color: white;
+$btn-default-border: black;
+
+@import 'bootstrap';
