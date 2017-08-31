@@ -1,6 +1,6 @@
 <%= form_for @task, remote: true do |f| %>
-    <%= f.text_field :content, placeholder: "Start typing here to create task..." %>
-    <%= f.check_box :done %>
-    <%= f.date :deadline %>
-    <%= f.submit "Add Task"%>
+    <%= f.text_field :title, placeholder: "Start typing here to create a task..." %>
+    <%= f.date_select :deadline %>
+    <%= f.hidden_field :project_id, :value => @p %>
+    <%= f.submit "Add Task" %>
 <% end %>

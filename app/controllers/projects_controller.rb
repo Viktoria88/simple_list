@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :authenticate_user!, exept: [:index, :show]
+  #before_action :authenticate_user!
   before_action :set_project, only: [:edit, :update, :destroy]
   before_action :all_projects, only: [:index, :create, :update, :destroy]
   respond_to :html, :js
@@ -9,12 +9,14 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1
   # GET /projects/1.json
-
-
+  def index
+    @projects = Project.all
+    @tasks = Task.all
+  end
   # GET /projects/new
   def new
     @project = Project.new
-    # @project.projects.build
+    @project.tasks.build
   end
 
   # GET /projects/1/edit
@@ -40,16 +42,12 @@ class ProjectsController < ApplicationController
 
   end
 
-  # def update_row_order
-  #   @project = Project.find(project_params[:project_id])
-  #   @project.row_order_position = project_params[:row_order_position]
-  #   @project.save
-  #
-  #   render nothing: true # this is a POST action, updates sent via AJAX, no view rendered
-  # end
-
 
   private
+
+    # def current_user
+    #   @user = current_user
+    # end
 
     def all_projects
       @projects = Project.all

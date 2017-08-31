@@ -1,15 +1,55 @@
 class TasksController < ApplicationController
 
-  before_action :set_project
-  before_action :set_task, except: [:create]
-
-  def create
-    @project = Project.find(params[:project_id])
-    @task = @project.task.create
-  end
+  #before_action :set_project
+  before_action :set_task, except: [:create, :new, :show]
 
   def new
-    @task = Task.new(params)
+    @task = Task.new
+  end
+
+  def create
+    @task = Task.create(task_params)
+    respond_to do |f|
+      f.html { redirect_to projects_url }
+      f.js
+    end
+  end
+
+  def show
+
+  end
+
+  def edit
+    @task = Task.find(params[:id])
+  end
+
+  def update
+    @task.update(task_params)
+    respond_to do |f|
+      f.html { redirect_to projects_url }
+      f.js
+    end
+    # @task.update_attributes!(task_params)
+  end
+
+  def destroy
+    if @task.destroy
+      flash[:success] = "Task was deleted."
+      respond_to do |f|
+        f.html { redirect_to projects_url }
+        f.js
+      end
+    else
+      flash[:error] = "Task could not be deleted."
+    end
+  end
+
+  def completed
+    if @task.complete?
+      @complete = Task.where(done: true)
+    else
+      @incomplete = Task.where(done: false)
+    end
   end
 
   private
@@ -19,11 +59,11 @@ class TasksController < ApplicationController
   end
 
   def set_task
-    @todo_task = Task.find(params[:task_id])
+    @task = Task.find(params[:id])
   end
 
   def task_params
-    params[:task].permit(:title, :done, :deadline)
+    params[:task].permit(:title, :done, :deadline, :project_id)
   end
 
 end

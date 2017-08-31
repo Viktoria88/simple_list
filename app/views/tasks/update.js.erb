@@ -1,0 +1,9 @@
+<% if @task.complete? %>
+  $('#edit <%= @task.id %>').appendTo('#complete');
+  $('#tasks').html("<%= escape_javascript(render :partial => @task )%>");
+  $('#task-form').slideUp(350);
+<% else %>
+  $('#edit <%= @task.id %>').appendTo('#incomplete');
+  $('#tasks').html("<%= escape_javascript(render :partial => @task )%>");
+  $('#task-form').slideUp(350);
+<% end %>
