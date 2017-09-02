@@ -19,17 +19,24 @@ class TasksController < ApplicationController
 
   end
 
-  def edit
-    @task = Task.find(params[:id])
-  end
+  # def edit
+  #   Task.find(@task.id).update_attributes(
+  #                          title: params[:title],
+  #                          dedline: params[:dedline],
+  #                          done: params[:done]
+  #   )
+  # end
 
   def update
+    set_project
+
     @task.update(task_params)
+    @task.update_attributes(task_params)
+
     respond_to do |f|
       f.html { redirect_to projects_url }
       f.js
     end
-    # @task.update_attributes!(task_params)
   end
 
   def destroy
@@ -44,13 +51,7 @@ class TasksController < ApplicationController
     end
   end
 
-  def completed
-    if @task.complete?
-      @complete = Task.where(done: true)
-    else
-      @incomplete = Task.where(done: false)
-    end
-  end
+
 
   private
 

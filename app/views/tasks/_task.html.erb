@@ -1,0 +1,14 @@
+<% task = @task %>
+
+<%= form_for task, remote: true do |f| %>
+
+  <div data-item-id=<%= task.id %> class="item">
+
+      <div id="complete">
+        <label class="checkbox">
+          <input type="checkbox" value="">
+          <%= task.title %>
+        </label>
+      </div>
+  </div>
+<% end %>

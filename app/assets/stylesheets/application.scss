@@ -69,9 +69,29 @@ body{
     }
     .content {
       padding-top: 50px;
+      .field{
+        input{
+          width: 70%;
+        }
+        input[type="submit"]{
+          background: #55c9a3;
+          width: 20%;
+        }
+      }
       .row{
         #projects{
           align-content: center;
+          div#edit-form{
+            width: 100%;
+            margin-left: 5px;
+            input {
+              width: 60%;
+            }
+            input[type="submit"] {
+              background: #55c9a3;
+              width: 10%;
+            }
+          }
           .table-hover{
             margin-top: 30px;
             border: 1px solid black;
@@ -83,9 +103,9 @@ body{
             //  padding-right: 10px;
             //  border: 1px solid black;
             //}
-            .table_project_title{
-              .item{
-                background:#64a8d9;
+            .table_project_title {
+              .item {
+                background: #64a8d9;
                 border-radius: 5px 5px;
                 h4 {
                   font-family: serif;
@@ -97,12 +117,13 @@ body{
                   display: inline-block;
                 }
 
-                .button{
+                .button {
                   position: relative;
                   width: 9%;
                   padding: 8px;
 
                 }
+              }
                 //.destroy {
                 //  position: relative;
                 //  width: auto;
@@ -115,19 +136,19 @@ body{
                 //  line-height: 1;
                 //  box-sizing: border-box;
                 //}
-              }
-              #task_form {
-                background: #bcccdc;
-                width: auto;
 
-                input{
-                  width: 60%;
-                }
-                input[type="submit"]{
-                  background: #55c9a3;
-                  width: 10%;
-                }
+                tr#task-form{
+                  background: #bcccdc;
+                  width: auto;
 
+                  input {
+                    width: 60%;
+                  }
+                  input[type="submit"] {
+                    background: #55c9a3;
+                    width: 10%;
+
+                }
               }
             }
             .table_task_title{
@@ -135,9 +156,9 @@ body{
                 position: relative;
               }
               .checkbox{
+                margin-top: 2px;
                 padding-left: 20px;
-                padding-bottom: 6px;
-                position: absolute;
+                padding-bottom: 0px;
                 margin-left: -1px;
               }
               p {
@@ -156,7 +177,7 @@ body{
               }
               .button{
                 list-style: none;
-                padding: 5px 0 0 0;
+                padding: 7px 0 0 0;
                 margin: 0;
                 overflow: hidden;
               }

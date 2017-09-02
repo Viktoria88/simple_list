@@ -1,6 +1,6 @@
 <%= form_for @project, remote: true do |f| %>
     <div class="field">
-         <%= f.text_field :title %>
+         <%= f.text_field :title, placeholder: "New Project" %>
          <%= f.submit "Add" %>
     </div>
 <% end %>

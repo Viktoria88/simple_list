@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root "projects#index"
 
   resources :projects
-  resources :tasks
+  resources :tasks#, :collection => { :complete => :put }
+  patch '/tasks/:id', to: 'tasks#complete', as: 'complete_task'
 
 end

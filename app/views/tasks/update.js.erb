@@ -1,9 +1,9 @@
-<% if @task.complete? %>
-  $('#edit <%= @task.id %>').appendTo('#complete');
-  $('#tasks').html("<%= escape_javascript(render :partial => @task )%>");
-  $('#task-form').slideUp(350);
+<% if @task.done? %>
+  $('#edit_task_<%= @task.id %>').appendTo('#complete');
+  $('#update-task').html("<%= escape_javascript(render :partial => @task )%>");
+  $('#edit-form').slideUp(350);
 <% else %>
-  $('#edit <%= @task.id %>').appendTo('#incomplete');
-  $('#tasks').html("<%= escape_javascript(render :partial => @task )%>");
-  $('#task-form').slideUp(350);
+  $('#edit_task_<%= @task.id %>').appendTo('#incomplete');
+  $('#update-task').html("<%= escape_javascript(render :partial => @task )%>");
+  $('#edit-form').slideUp(350);
 <% end %>

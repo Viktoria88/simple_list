@@ -1,4 +1,8 @@
-  <% @projects.each do |p| %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-2" id="edit-form" style="display:none;"></div>
+</div>
+
+<% @projects.each do |p| %>
   <table class="table table-hover">
     <thead class="table_project_title">
       <tr data-item-id=<%= p.id %> class="item">
@@ -19,53 +23,42 @@
           <% end %>
         </td>
       </tr>
-      <tr id="task_form">
+      <tr id="task-form">
         <td class="render-task" colspan="3">
-              <% @task = Task.new %>
-              <% @p = p.id %>
-              <%= render "tasks/form" %>
+          <% @task = Task.new%>
+          <% @project_id = p.id %>
+          <%= render "tasks/form" %>
         </td>
       </tr>
     </thead>
     <tbody class="table_task_title">
-          <div class="row">
-            <div class="col-md-7 col-md-offset-1" id="tasks">
-                  <% p.tasks.each do |task| %>
-                    <% @task_id = task.id%>
+    <div class="row">
+      <div class="col-md-7 col-md-offset-1" id="tasks">
+    <% p.tasks.each do |task| %>
+    <% @task = task %>
+            <tr>
+              <td id = "update-task">
+                <%= render "tasks/task" %>
+              </td>
+            <td class="button">
+              <%= link_to edit_task_path(task), remote: true do %>
+                  <span class="glyphicon glyphicon-pencil"> </span>
+              <% end %>
+            </td>
 
-                    <tr data-item-id=<%= task.id %> class="item">
-                      <td>
-                        <div id="complete">
-                        <label class="checkbox">
-                          <input type="checkbox" value="">
-                        </label>
-                        </div>
-                      </td>
-                      <td>
-                        <p>
-                        <%= task.title %>
-                        </p>
-                      </td>
+            <td class="button-edit">
+              <%= link_to task, remote:true, method: :delete do %>
+                  <span class="glyphicon glyphicon-trash"> </span>
+              <% end %>
 
-                      <td class="button">
-                        <%= link_to edit_task_path(task), remote: true do %>
-                            <span class="glyphicon glyphicon-pencil"> </span>
-                        <% end %>
-                      </td>
-
-                      <td class="button">
-                        <%= link_to task, remote:true, method: :delete do %>
-                            <span class="glyphicon glyphicon-trash"> </span>
-                        <% end %>
-                      </td>
-                    </tr>
-                <% end %>
-
+              </td>
+            </tr>
+            <div class="row">
+              <div class="col-md-6 col-md-offset-2" id="task-form" style="display:none;"></div>
             </div>
-          </div>
-
-        </td>
-      </tr>
+      <% end %>
+      </div>
+    </div>
     </tbody>
   </table>
   <% end %>
