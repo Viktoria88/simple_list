@@ -21,11 +21,10 @@ class TasksController < ApplicationController
   end
 
   def edit
-    set_project
+    # @task = Project.tasks.find(params[:id])
   end
 
   def update
-    set_project
     @task.update(task_params)
     @task.update_attributes(task_params)
 
