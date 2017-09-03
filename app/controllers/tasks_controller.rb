@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
 
-  #before_action :set_project
+  # before_action :set_project, except: [:edit]
   before_action :set_task, except: [:create, :new, :show]
 
   def new
@@ -8,6 +8,7 @@ class TasksController < ApplicationController
   end
 
   def create
+
     @task = Task.create(task_params)
     respond_to do |f|
       f.html { redirect_to projects_url }
@@ -19,17 +20,12 @@ class TasksController < ApplicationController
 
   end
 
-  # def edit
-  #   Task.find(@task.id).update_attributes(
-  #                          title: params[:title],
-  #                          dedline: params[:dedline],
-  #                          done: params[:done]
-  #   )
-  # end
+  def edit
+    set_project
+  end
 
   def update
     set_project
-
     @task.update(task_params)
     @task.update_attributes(task_params)
 
